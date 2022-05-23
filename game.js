@@ -10,12 +10,12 @@ function computerPlay() {
 	else {
 		handOne = "Rock";
 	}
-		console.log(handOne);
 
 return handOne;
 }
-const computerSelection = computerPlay(); // Plays it
-const playerSelection = "Rock";
+let computerSelection = computerPlay(); // Plays it
+var playerSelection = prompt("Rock, Paper, Scissors?");
+ 
 
 function roundOne ( computerSelection, playerSelection) { // function RoundOne
 if ( computerSelection == "Rock" && playerSelection == "Paper" ) {  // if statement Rock beats scissors, paper beats rock, scissors beat paper.
@@ -42,7 +42,15 @@ if ( computerSelection == "Rock" && playerSelection == "Paper" ) {  // if statem
    }
 // return string thats says what happened 
 }
+function game() {
+	for (let i = 0; i < 5; i++) {
+		roundOne();
+		computerSelection = computerPlay();
+		playerSelection = prompt("Rock, Paper, Scissors?");
+		console.log(roundOne(computerSelection, playerSelection));
+
+	}
+}
 
 
-
-console.log(roundOne(computerSelection, playerSelection));
+game();
