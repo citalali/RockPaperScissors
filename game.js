@@ -13,27 +13,37 @@ function computerPlay() {
 
 return handOne;
 }
-let computerSelection = computerPlay(); // Plays it
-var playerSelection = prompt("Rock, Paper, Scissors?");
+let computerSelection ; // var holds random computer selection
+var playerSelection ; // var holds our player selection
+var computerScore = 0; // keeps the score
+var playerScore = 0;
  
 
 function roundOne ( computerSelection, playerSelection) { // function RoundOne
 if ( computerSelection == "Rock" && playerSelection == "Paper" ) {  // if statement Rock beats scissors, paper beats rock, scissors beat paper.
+		playerScore++;  // increments the score
 	return "You Win! Paper beats Rock" ;
 }
 	else if (computerSelection == "Rock" && playerSelection == "Scissors"){
+		computerScore++;
 		return "You Lose! Rock beats Scissors";
 	}
     else if ( computerSelection == "Paper" && playerSelection == "Scissors" ) {
+		playerScore++;
 	     return "You Win! Paper beats Rock" ;
+		
 }
 	else if (computerSelection == "Paper" && playerSelection == "Rock"){
+		computerScore++ ;
 		return "You Lose! Paper beats Rock";
+		
 	}
 	else if ( computerSelection == "Scissors" && playerSelection == "Paper" ) {
+		computerScore++ ;
 	return "You Lose! Scissor beats Paper" ;
 }
 	else if (computerSelection == "Scissors" && playerSelection == "Rock"){
+		playerScore++ ;
 		return "You Win! Rock beats Scissors";
 	}
    else {
@@ -42,15 +52,32 @@ if ( computerSelection == "Rock" && playerSelection == "Paper" ) {  // if statem
    }
 // return string thats says what happened 
 }
-function game() {
+
+function playGame() {   // plays the game 5 times
 	for (let i = 0; i < 5; i++) {
 		roundOne();
 		computerSelection = computerPlay();
 		playerSelection = prompt("Rock, Paper, Scissors?");
 		console.log(roundOne(computerSelection, playerSelection));
-
+		
+		}
 	}
+	
+
+
+
+playGame();
+function findWinner () {     // finds the winner and console.logs it.
+ if ( playerScore > computerScore ) {
+			console.log("YOU WON");
+		}
+		else if ( computerScore > playerScore) {
+			console.log("YOU LOST");
+		}
+		else {
+			console.log("TIE");
+		} 
+
+	
 }
-
-
-game();
+findWinner();
