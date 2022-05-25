@@ -10,16 +10,39 @@ function computerPlay() {
 	else {
 		handOne = "Rock";
 	}
-
-return handOne;
+	return handOne;
 }
 let computerSelection ; // var holds random computer selection
 var playerSelection ; // var holds our player selection
 var computerScore = 0; // keeps the score
 var playerScore = 0;
  
+const Results = document.querySelector('#Results');
+Results.style.backgroundColor = 'pink';
 
-function roundOne ( computerSelection, playerSelection) { // function RoundOne
+
+
+
+const selectionUser = document.querySelectorAll('button'); // (makes selectionPlayer into a nodelist)
+selectionUser.forEach((button) => {
+	button.addEventListener('click', () => {
+				if (playerScore < 5 && computerScore < 5) {
+		playerSelection = button.id;
+		computerSelection = computerPlay();
+        Results.textContent = roundOne(computerSelection, playerSelection) + ' Your Score: ' + playerScore + ' Computer Score: ' + computerScore ; }
+		else {
+			Results.textContent = findWinner();
+			Results.style.backgroundColor = 'blue';
+		}
+		
+
+	});
+}); 
+
+
+
+
+ function roundOne ( computerSelection, playerSelection) { // function RoundOne
 if ( computerSelection == "Rock" && playerSelection == "Paper" ) {  // if statement Rock beats scissors, paper beats rock, scissors beat paper.
 		playerScore++;  // increments the score
 	return "You Win! Paper beats Rock" ;
@@ -52,7 +75,7 @@ if ( computerSelection == "Rock" && playerSelection == "Paper" ) {  // if statem
    }
 // return string thats says what happened 
 }
-
+/*
 function playGame() {   // plays the game 5 times
 	for (let i = 0; i < 5; i++) {
 		roundOne();
@@ -63,21 +86,25 @@ function playGame() {   // plays the game 5 times
 		}
 	}
 	
-
-
-
+	
 playGame();
+*/
+
+
+
+
+
 function findWinner () {     // finds the winner and console.logs it.
  if ( playerScore > computerScore ) {
-			console.log("YOU WON");
+			return "YOU WON";
 		}
 		else if ( computerScore > playerScore) {
-			console.log("YOU LOST");
+			return "YOU LOST";
 		}
 		else {
-			console.log("TIE");
+			return "TIE";
 		} 
 
 	
 }
-findWinner();
+// findWinner(); 
